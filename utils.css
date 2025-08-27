@@ -1,0 +1,13 @@
+
+.bg-red{
+    background-color: blue;
+}
+.flex{
+    display: flex;
+}
+.flex-col{
+    flex-direction: column;
+    align-items: center;
+    
+}
+
