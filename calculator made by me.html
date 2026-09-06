@@ -1,93 +1,504 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalculatE Me!!- Calculator made by me. </title>
+
+    <title>Calculate Me!!</title>
+
     <style>
 
-        *{
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: "Roboto", sans-serif;
-background-image: url("https://tse4.mm.bing.net/th/id/OIP.9RcFjBVel9HCimEOZ8zBUAHaE6?pid=Api&P=0&h=180");
         }
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-        .heading{
-            text-align: center;
-            text-decoration: underline;
+
+        /* ================= BACKGROUND ================= */
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background: linear-gradient(
+                -45deg,
+                #0f172a,
+                #1e293b,
+                #312e81,
+                #0f766e
+            );
+
+            background-size: 400% 400%;
+
+            animation: gradientBG 12s ease infinite;
         }
-        .button{
-            padding:22px;
-            margin:0px 3px;
-            border:2px solid black;
-            border-radius: 10px;
+
+        @keyframes gradientBG {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+
+        }
+
+
+        /* ================= HEADING ================= */
+
+        .heading {
+
+            color: white;
+
+            font-size: 42px;
+
+            font-weight: 700;
+
+            margin-bottom: 25px;
+
+            letter-spacing: 1px;
+
+            text-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.4);
+
+            animation:
+                headingAnimation 2s ease-in-out infinite alternate;
+
+        }
+
+        @keyframes headingAnimation {
+
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-8px);
+            }
+
+        }
+
+
+        /* ================= CALCULATOR ================= */
+
+        .container {
+
+            padding: 25px;
+
+            border-radius: 25px;
+
+            background: rgba(255, 255, 255, 0.12);
+
+            backdrop-filter: blur(15px);
+
+            -webkit-backdrop-filter: blur(15px);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.35),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+
+            animation: calculatorEntry 0.8s ease-out;
+
+        }
+
+        @keyframes calculatorEntry {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(40px)
+                    scale(0.9);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* ================= DISPLAY ================= */
+
+        .row input {
+
+            width: 100%;
+
+            height: 65px;
+
+            font-size: 28px;
+
+            font-weight: 500;
+
+            padding: 10px 15px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            color: white;
+
+            text-align: right;
+
+            box-shadow:
+                inset 0 4px 10px rgba(0, 0, 0, 0.4),
+                0 3px 10px rgba(0, 0, 0, 0.2);
+
+            margin-bottom: 8px;
+
+        }
+
+
+        /* ================= ROW ================= */
+
+        .row {
+
+            margin: 8px 0;
+
+            display: flex;
+
+            gap: 8px;
+
+        }
+
+
+        /* ================= BUTTONS ================= */
+
+        .button {
+
+            width: 64px;
+
+            height: 58px;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 14px;
+
             cursor: pointer;
-            width:64px;
-            background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20190727/pngtree-minimalistic-white-honeycomb-paper-cut-wind-business-background-image_285722.jpg");
+
+            font-size: 20px;
+
+            font-weight: 500;
+
+            color: white;
+
+            background: rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 5px 12px rgba(0, 0, 0, 0.25),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
 
         }
-        .row{
-            margin:8px 0px;
+
+
+        /* Hover */
+
+        .button:hover {
+
+            transform:
+                translateY(-4px)
+                scale(1.05);
+
+            background:
+                rgba(255, 255, 255, 0.25);
+
+            box-shadow:
+                0 10px 20px rgba(0, 0, 0, 0.35);
+
         }
-        .row input{
-            font-size: 25px;
-            padding: 12px 0px;
-            border: 2px solid black;
-            border-radius:5px ;
-            background-image: url("https://wallpaperaccess.com/full/4850392.jpg");
+
+
+        /* Click */
+
+        .button:active {
+
+            transform: scale(0.92);
+
         }
+
+
+        /* ================= AC BUTTON ================= */
+
+        #ac-button {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ef4444,
+                    #dc2626
+                );
+
+            color: white;
+
+        }
+
+        #ac-button:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f87171,
+                    #ef4444
+                );
+
+        }
+
+
+        /* ================= EQUAL BUTTON ================= */
+
+        #equals-button {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            color: white;
+
+        }
+
+        #equals-button:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3b82f6,
+                    #6366f1
+                );
+
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 500px) {
+
+            .heading {
+
+                font-size: 32px;
+
+            }
+
+            .container {
+
+                padding: 18px;
+
+            }
+
+            .button {
+
+                width: 58px;
+
+                height: 55px;
+
+            }
+
+            .row input {
+
+                height: 60px;
+
+                font-size: 24px;
+
+            }
+
+        }
+
     </style>
-     <!-- <link rel="stylesheet" href="style.css"> -->
-      <link rel="stylesheet" href="utils.css">
+
 </head>
+
+
 <body>
-   <h1 class="heading"> Welcome to Calculate Me.</h1>
-   
-   
-<div class="container  flex flex-col  mg-auto  m-w-30 ">
-     <div class="row">
-    <input class="input" type="text">
-   </div>
-    <div class="row">
-        <!-- <button class="button">7</button> -->
-<button class="button">AC</button>
-<button class="button">()</button>
-<button class="button">%</button>
-<button class="button">/</button>
-    </div>
-    <div class="row">
-<button class="button">7</button>
-<button class="button">8</button>
-<button class="button">9</button>
-<button class="button">*</button>
+
+    <!-- Heading -->
+
+    <h1 class="heading">
+        Welcome to Calculator
+    </h1>
+
+
+    <!-- Calculator -->
+
+    <div class="container">
+
+        <!-- Display -->
+
+        <div class="row">
+
+            <input
+                class="input"
+                type="text"
+                readonly
+            >
+
+        </div>
+
+
+        <!-- Row 1 -->
+
+        <div class="row">
+
+            <button
+                id="ac-button"
+                class="button">
+                AC
+            </button>
+
+            <button class="button">
+                ()
+            </button>
+
+            <button class="button">
+                %
+            </button>
+
+            <button class="button">
+                /
+            </button>
+
+        </div>
+
+
+        <!-- Row 2 -->
+
+        <div class="row">
+
+            <button class="button">
+                7
+            </button>
+
+            <button class="button">
+                8
+            </button>
+
+            <button class="button">
+                9
+            </button>
+
+            <button class="button">
+                *
+            </button>
+
+        </div>
+
+
+        <!-- Row 3 -->
+
+        <div class="row">
+
+            <button class="button">
+                4
+            </button>
+
+            <button class="button">
+                5
+            </button>
+
+            <button class="button">
+                6
+            </button>
+
+            <button class="button">
+                -
+            </button>
+
+        </div>
+
+
+        <!-- Row 4 -->
+
+        <div class="row">
+
+            <button class="button">
+                1
+            </button>
+
+            <button class="button">
+                2
+            </button>
+
+            <button class="button">
+                3
+            </button>
+
+            <button class="button">
+                +
+            </button>
+
+        </div>
+
+
+        <!-- Row 5 -->
+
+        <div class="row">
+
+            <button class="button">
+                +/-
+            </button>
+
+            <button class="button">
+                0
+            </button>
+
+            <button class="button">
+                .
+            </button>
+
+            <button
+                id="equals-button"
+                class="button">
+                =
+            </button>
+
+        </div>
 
     </div>
-    <div class="row">
-<button class="button">4</button>
-<button class="button">5</button>
-<button class="button">6</button>
-<button class="button">-</button>
 
-    </div>
-    <div class="row">
-        <!-- <button class="button">7</button> -->
-<button class="button">1</button>
-<button class="button">2</button>
-<button class="button">3</button>
-<button class="button">+</button>
-    </div>
-    <div class="row">
-        <!-- <button class="button">7</button> -->
-<button class="button">+/-</button>
-<button class="button">0</button>
 
-<button class="button">.</button>
-    
-<button class="button">=</button>
+    <!-- JavaScript -->
 
-    </div>
-</div>
     <script src="indexs.js"></script>
 
 </body>
+
 </html>
